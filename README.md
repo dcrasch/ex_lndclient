@@ -12,6 +12,7 @@ $ mix do deps.get, compile, escript.build
 3. start the script
 ```
 $ ./ex_lndclient --macaroonpath=macaroon.txt --tlscertpath=tls.cert --rpcserver=127.0.0.1:90001
+```
 
 ## Installation
 
