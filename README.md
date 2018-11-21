@@ -65,6 +65,6 @@ And https://github.com/lightningnetwork/lnd/tree/master/docs/grpc for lightningn
 
 # License
 
-Copyright (c) 2018 David Rasch
-
-Licensed under the MIT License
+1. ex_lndclient Copyright (c) 2018 David Rasch Licensed under the MIT License
+2. Google Protos Licensed under the Apache 2.0 License
+3. lnrpc Lightningnetwork Protos Licensed under the MIT License
