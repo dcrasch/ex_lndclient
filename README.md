@@ -63,7 +63,13 @@ $ protoc -I priv/protos --elixir_out=plugins=grpc:./lib/ priv/protos/lnrpc/rpc.p
 Refer to [protobuf-elixir](https://github.com/tony612/protobuf-elixir#usage) for more information.
 And https://github.com/lightningnetwork/lnd/tree/master/docs/grpc for lightningnetwork grpc lnd
 
-# License
+## Roadmap
+- [X] Connect to a lightning network server via gRPC
+- [ ] Subscribe to transaction stream
+- [ ] Command line version
+- [ ] Elixir module for reuse
+- [ ] Add support for macaroon to the grpc library
+## License
 
 1. ex_lndclient Copyright (c) 2018 David Rasch Licensed under the MIT License
 2. Google Protos Licensed under the Apache 2.0 License
