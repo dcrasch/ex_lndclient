@@ -1,6 +1,10 @@
 # ExLndclient
 
+**This is work in progress. It is functional but I would be careful using it in production. If you want to help, please drop me a message. Any help is greatly appreciated!**
+
 This is a gRPC client for [lnd](https://github.com/lightningnetwork/lnd) (0.5-beta). It is generated code from [rpc.proto](https://github.com/lightningnetwork/lnd/blob/v0.5-beta/lnrpc/rpc.proto)
+
+
 
 ## Usage
 
@@ -58,3 +62,9 @@ $ protoc -I priv/protos --elixir_out=plugins=grpc:./lib/ priv/protos/lnrpc/rpc.p
 
 Refer to [protobuf-elixir](https://github.com/tony612/protobuf-elixir#usage) for more information.
 And https://github.com/lightningnetwork/lnd/tree/master/docs/grpc for lightningnetwork grpc lnd
+
+# License
+
+Copyright (c) 2018 David Rasch
+
+Licensed under the MIT License
