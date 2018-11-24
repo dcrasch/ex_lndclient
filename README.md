@@ -65,10 +65,12 @@ And https://github.com/lightningnetwork/lnd/tree/master/docs/grpc for lightningn
 
 ## Roadmap
 - [X] Connect to a lightning network server via gRPC
-- [ ] Subscribe to transaction stream
-- [ ] Command line version
+- [X] Subscribe to transaction stream
+- [ ] Enhance your calm too many pings
+- [ ] Command line version 
 - [ ] Elixir module for reuse
 - [ ] Add support for macaroon to the grpc library
+
 ## License
 
 1. ex_lndclient Copyright (c) 2018 David Rasch Licensed under the MIT License
