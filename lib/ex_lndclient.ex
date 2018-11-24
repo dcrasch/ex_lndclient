@@ -4,8 +4,8 @@ defmodule ExLndclient do
   """
 
   @default_macaroonpath "macaroon.txt"
-  @default_rpcserver    "127.0.0.1:10009"
-  @default_tlscertpath  "tls.cert"
+  @default_rpcserver "127.0.0.1:10009"
+  @default_tlscertpath "tls.cert"
 
   def main(argv) do
     argv
@@ -14,44 +14,63 @@ defmodule ExLndclient do
   end
 
   def parse_args(argv) do
-    options = %{ :macaroonpath => @default_macaroonpath,
-                 :rpcserver    => @default_rpcserver,
-                 :tlscertpath  => @default_tlscertpath}
-    cmd_opts = OptionParser.parse(
-      argv,
-      switches: [
-        help: :boolean,
-        macaroonpath: :string,
-        rpcserver: :string,
-        tlscertpath: :string],
-      aliases: [h: :help]
-    )
+    options = %{
+      :macaroonpath => @default_macaroonpath,
+      :rpcserver => @default_rpcserver,
+      :tlscertpath => @default_tlscertpath
+    }
+
+    cmd_opts =
+      OptionParser.parse(
+        argv,
+        switches: [
+          help: :boolean,
+          macaroonpath: :string,
+          rpcserver: :string,
+          tlscertpath: :string
+        ],
+        aliases: [h: :help]
+      )
+
     case cmd_opts do
-      { [help: :true], _, _} -> :help
-      { opts, args, [] } -> { Enum.into(opts, options), args }
+      {[help: true], _, _} -> :help
+      {opts, args, []} -> {Enum.into(opts, options), args}
       _ -> :help
     end
   end
 
   def process(:help) do
-    IO.inspect @moduledoc
+    IO.inspect(@moduledoc)
     System.halt(0)
   end
 
   def process({options, args}) do
     ca_path = Path.expand(options[:tlscertpath])
-    cred = GRPC.Credential.new(ssl: [
-          cacertfile: ca_path])
+    cred = GRPC.Credential.new(ssl: [cacertfile: ca_path])
     {:ok, channel} = GRPC.Stub.connect(options[:rpcserver], cred: cred)
-    macaroon = Path.expand(options[:macaroonpath])
-    |> File.read!
-    |> String.trim
-    metadata = %{"macaroon" => macaroon }
+
+    macaroon =
+      Path.expand(options[:macaroonpath])
+      |> File.read!()
+      |> String.trim()
+
+    metadata = %{"macaroon" => macaroon}
 
     request = Lnrpc.GetInfoRequest.new()
-    { :ok, reply } = channel
-    |> Lnrpc.Lightning.Stub.get_info(request, metadata: metadata)
 
-    IO.inspect reply
+    {:ok, reply} =
+      channel
+      |> Lnrpc.Lightning.Stub.get_info(request, metadata: metadata)
+
+    IO.inspect(reply)
+
+    request = Lnrpc.InvoiceSubscription.new(add_index: 0, settle_index: 0)
+
+    {:ok, stream} =
+      channel |> Lnrpc.Lightning.Stub.subscribe_invoices(request, metadata: metadata)
+
+    Enum.each(stream, fn {:ok, invoice} ->
+      IO.inspect(invoice)
+    end)
   end
 end

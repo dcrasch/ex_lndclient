@@ -8,8 +8,8 @@ defmodule Lnrpc.GenSeedRequest do
         }
   defstruct [:aezeed_passphrase, :seed_entropy]
 
-  field :aezeed_passphrase, 1, type: :bytes
-  field :seed_entropy, 2, type: :bytes
+  field(:aezeed_passphrase, 1, type: :bytes)
+  field(:seed_entropy, 2, type: :bytes)
 end
 
 defmodule Lnrpc.GenSeedResponse do
@@ -22,8 +22,8 @@ defmodule Lnrpc.GenSeedResponse do
         }
   defstruct [:cipher_seed_mnemonic, :enciphered_seed]
 
-  field :cipher_seed_mnemonic, 1, repeated: true, type: :string
-  field :enciphered_seed, 2, type: :bytes
+  field(:cipher_seed_mnemonic, 1, repeated: true, type: :string)
+  field(:enciphered_seed, 2, type: :bytes)
 end
 
 defmodule Lnrpc.InitWalletRequest do
@@ -38,10 +38,10 @@ defmodule Lnrpc.InitWalletRequest do
         }
   defstruct [:wallet_password, :cipher_seed_mnemonic, :aezeed_passphrase, :recovery_window]
 
-  field :wallet_password, 1, type: :bytes
-  field :cipher_seed_mnemonic, 2, repeated: true, type: :string
-  field :aezeed_passphrase, 3, type: :bytes
-  field :recovery_window, 4, type: :int32
+  field(:wallet_password, 1, type: :bytes)
+  field(:cipher_seed_mnemonic, 2, repeated: true, type: :string)
+  field(:aezeed_passphrase, 3, type: :bytes)
+  field(:recovery_window, 4, type: :int32)
 end
 
 defmodule Lnrpc.InitWalletResponse do
@@ -61,8 +61,8 @@ defmodule Lnrpc.UnlockWalletRequest do
         }
   defstruct [:wallet_password, :recovery_window]
 
-  field :wallet_password, 1, type: :bytes
-  field :recovery_window, 2, type: :int32
+  field(:wallet_password, 1, type: :bytes)
+  field(:recovery_window, 2, type: :int32)
 end
 
 defmodule Lnrpc.UnlockWalletResponse do
@@ -82,8 +82,8 @@ defmodule Lnrpc.ChangePasswordRequest do
         }
   defstruct [:current_password, :new_password]
 
-  field :current_password, 1, type: :bytes
-  field :new_password, 2, type: :bytes
+  field(:current_password, 1, type: :bytes)
+  field(:new_password, 2, type: :bytes)
 end
 
 defmodule Lnrpc.ChangePasswordResponse do
@@ -118,14 +118,14 @@ defmodule Lnrpc.Transaction do
     :dest_addresses
   ]
 
-  field :tx_hash, 1, type: :string
-  field :amount, 2, type: :int64
-  field :num_confirmations, 3, type: :int32
-  field :block_hash, 4, type: :string
-  field :block_height, 5, type: :int32
-  field :time_stamp, 6, type: :int64
-  field :total_fees, 7, type: :int64
-  field :dest_addresses, 8, repeated: true, type: :string
+  field(:tx_hash, 1, type: :string)
+  field(:amount, 2, type: :int64)
+  field(:num_confirmations, 3, type: :int32)
+  field(:block_hash, 4, type: :string)
+  field(:block_height, 5, type: :int32)
+  field(:time_stamp, 6, type: :int64)
+  field(:total_fees, 7, type: :int64)
+  field(:dest_addresses, 8, repeated: true, type: :string)
 end
 
 defmodule Lnrpc.GetTransactionsRequest do
@@ -144,7 +144,7 @@ defmodule Lnrpc.TransactionDetails do
         }
   defstruct [:transactions]
 
-  field :transactions, 1, repeated: true, type: Lnrpc.Transaction
+  field(:transactions, 1, repeated: true, type: Lnrpc.Transaction)
 end
 
 defmodule Lnrpc.FeeLimit do
@@ -156,9 +156,9 @@ defmodule Lnrpc.FeeLimit do
         }
   defstruct [:limit]
 
-  oneof :limit, 0
-  field :fixed, 1, type: :int64, oneof: 0
-  field :percent, 2, type: :int64, oneof: 0
+  oneof(:limit, 0)
+  field(:fixed, 1, type: :int64, oneof: 0)
+  field(:percent, 2, type: :int64, oneof: 0)
 end
 
 defmodule Lnrpc.SendRequest do
@@ -186,14 +186,14 @@ defmodule Lnrpc.SendRequest do
     :fee_limit
   ]
 
-  field :dest, 1, type: :bytes
-  field :dest_string, 2, type: :string
-  field :amt, 3, type: :int64
-  field :payment_hash, 4, type: :bytes
-  field :payment_hash_string, 5, type: :string
-  field :payment_request, 6, type: :string
-  field :final_cltv_delta, 7, type: :int32
-  field :fee_limit, 8, type: Lnrpc.FeeLimit
+  field(:dest, 1, type: :bytes)
+  field(:dest_string, 2, type: :string)
+  field(:amt, 3, type: :int64)
+  field(:payment_hash, 4, type: :bytes)
+  field(:payment_hash_string, 5, type: :string)
+  field(:payment_request, 6, type: :string)
+  field(:final_cltv_delta, 7, type: :int32)
+  field(:fee_limit, 8, type: Lnrpc.FeeLimit)
 end
 
 defmodule Lnrpc.SendResponse do
@@ -207,9 +207,9 @@ defmodule Lnrpc.SendResponse do
         }
   defstruct [:payment_error, :payment_preimage, :payment_route]
 
-  field :payment_error, 1, type: :string
-  field :payment_preimage, 2, type: :bytes
-  field :payment_route, 3, type: Lnrpc.Route
+  field(:payment_error, 1, type: :string)
+  field(:payment_preimage, 2, type: :bytes)
+  field(:payment_route, 3, type: Lnrpc.Route)
 end
 
 defmodule Lnrpc.SendToRouteRequest do
@@ -223,9 +223,9 @@ defmodule Lnrpc.SendToRouteRequest do
         }
   defstruct [:payment_hash, :payment_hash_string, :routes]
 
-  field :payment_hash, 1, type: :bytes
-  field :payment_hash_string, 2, type: :string
-  field :routes, 3, repeated: true, type: Lnrpc.Route
+  field(:payment_hash, 1, type: :bytes)
+  field(:payment_hash_string, 2, type: :string)
+  field(:routes, 3, repeated: true, type: Lnrpc.Route)
 end
 
 defmodule Lnrpc.ChannelPoint do
@@ -238,10 +238,10 @@ defmodule Lnrpc.ChannelPoint do
         }
   defstruct [:funding_txid, :output_index]
 
-  oneof :funding_txid, 0
-  field :funding_txid_bytes, 1, type: :bytes, oneof: 0
-  field :funding_txid_str, 2, type: :string, oneof: 0
-  field :output_index, 3, type: :uint32
+  oneof(:funding_txid, 0)
+  field(:funding_txid_bytes, 1, type: :bytes, oneof: 0)
+  field(:funding_txid_str, 2, type: :string, oneof: 0)
+  field(:output_index, 3, type: :uint32)
 end
 
 defmodule Lnrpc.LightningAddress do
@@ -254,8 +254,8 @@ defmodule Lnrpc.LightningAddress do
         }
   defstruct [:pubkey, :host]
 
-  field :pubkey, 1, type: :string
-  field :host, 2, type: :string
+  field(:pubkey, 1, type: :string)
+  field(:host, 2, type: :string)
 end
 
 defmodule Lnrpc.SendManyRequest do
@@ -269,9 +269,10 @@ defmodule Lnrpc.SendManyRequest do
         }
   defstruct [:AddrToAmount, :target_conf, :sat_per_byte]
 
-  field :AddrToAmount, 1, repeated: true, type: Lnrpc.SendManyRequest.AddrToAmountEntry, map: true
-  field :target_conf, 3, type: :int32
-  field :sat_per_byte, 5, type: :int64
+  field(:AddrToAmount, 1, repeated: true, type: Lnrpc.SendManyRequest.AddrToAmountEntry, map: true)
+
+  field(:target_conf, 3, type: :int32)
+  field(:sat_per_byte, 5, type: :int64)
 end
 
 defmodule Lnrpc.SendManyRequest.AddrToAmountEntry do
@@ -284,8 +285,8 @@ defmodule Lnrpc.SendManyRequest.AddrToAmountEntry do
         }
   defstruct [:key, :value]
 
-  field :key, 1, type: :string
-  field :value, 2, type: :int64
+  field(:key, 1, type: :string)
+  field(:value, 2, type: :int64)
 end
 
 defmodule Lnrpc.SendManyResponse do
@@ -297,7 +298,7 @@ defmodule Lnrpc.SendManyResponse do
         }
   defstruct [:txid]
 
-  field :txid, 1, type: :string
+  field(:txid, 1, type: :string)
 end
 
 defmodule Lnrpc.SendCoinsRequest do
@@ -312,10 +313,10 @@ defmodule Lnrpc.SendCoinsRequest do
         }
   defstruct [:addr, :amount, :target_conf, :sat_per_byte]
 
-  field :addr, 1, type: :string
-  field :amount, 2, type: :int64
-  field :target_conf, 3, type: :int32
-  field :sat_per_byte, 5, type: :int64
+  field(:addr, 1, type: :string)
+  field(:amount, 2, type: :int64)
+  field(:target_conf, 3, type: :int32)
+  field(:sat_per_byte, 5, type: :int64)
 end
 
 defmodule Lnrpc.SendCoinsResponse do
@@ -327,7 +328,7 @@ defmodule Lnrpc.SendCoinsResponse do
         }
   defstruct [:txid]
 
-  field :txid, 1, type: :string
+  field(:txid, 1, type: :string)
 end
 
 defmodule Lnrpc.NewAddressRequest do
@@ -339,15 +340,15 @@ defmodule Lnrpc.NewAddressRequest do
         }
   defstruct [:type]
 
-  field :type, 1, type: Lnrpc.NewAddressRequest.AddressType, enum: true
+  field(:type, 1, type: Lnrpc.NewAddressRequest.AddressType, enum: true)
 end
 
 defmodule Lnrpc.NewAddressRequest.AddressType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
-  field :WITNESS_PUBKEY_HASH, 0
-  field :NESTED_PUBKEY_HASH, 1
+  field(:WITNESS_PUBKEY_HASH, 0)
+  field(:NESTED_PUBKEY_HASH, 1)
 end
 
 defmodule Lnrpc.NewAddressResponse do
@@ -359,7 +360,7 @@ defmodule Lnrpc.NewAddressResponse do
         }
   defstruct [:address]
 
-  field :address, 1, type: :string
+  field(:address, 1, type: :string)
 end
 
 defmodule Lnrpc.SignMessageRequest do
@@ -371,7 +372,7 @@ defmodule Lnrpc.SignMessageRequest do
         }
   defstruct [:msg]
 
-  field :msg, 1, type: :bytes
+  field(:msg, 1, type: :bytes)
 end
 
 defmodule Lnrpc.SignMessageResponse do
@@ -383,7 +384,7 @@ defmodule Lnrpc.SignMessageResponse do
         }
   defstruct [:signature]
 
-  field :signature, 1, type: :string
+  field(:signature, 1, type: :string)
 end
 
 defmodule Lnrpc.VerifyMessageRequest do
@@ -396,8 +397,8 @@ defmodule Lnrpc.VerifyMessageRequest do
         }
   defstruct [:msg, :signature]
 
-  field :msg, 1, type: :bytes
-  field :signature, 2, type: :string
+  field(:msg, 1, type: :bytes)
+  field(:signature, 2, type: :string)
 end
 
 defmodule Lnrpc.VerifyMessageResponse do
@@ -410,8 +411,8 @@ defmodule Lnrpc.VerifyMessageResponse do
         }
   defstruct [:valid, :pubkey]
 
-  field :valid, 1, type: :bool
-  field :pubkey, 2, type: :string
+  field(:valid, 1, type: :bool)
+  field(:pubkey, 2, type: :string)
 end
 
 defmodule Lnrpc.ConnectPeerRequest do
@@ -424,8 +425,8 @@ defmodule Lnrpc.ConnectPeerRequest do
         }
   defstruct [:addr, :perm]
 
-  field :addr, 1, type: Lnrpc.LightningAddress
-  field :perm, 2, type: :bool
+  field(:addr, 1, type: Lnrpc.LightningAddress)
+  field(:perm, 2, type: :bool)
 end
 
 defmodule Lnrpc.ConnectPeerResponse do
@@ -444,7 +445,7 @@ defmodule Lnrpc.DisconnectPeerRequest do
         }
   defstruct [:pub_key]
 
-  field :pub_key, 1, type: :string
+  field(:pub_key, 1, type: :string)
 end
 
 defmodule Lnrpc.DisconnectPeerResponse do
@@ -466,10 +467,10 @@ defmodule Lnrpc.HTLC do
         }
   defstruct [:incoming, :amount, :hash_lock, :expiration_height]
 
-  field :incoming, 1, type: :bool
-  field :amount, 2, type: :int64
-  field :hash_lock, 3, type: :bytes
-  field :expiration_height, 4, type: :uint32
+  field(:incoming, 1, type: :bool)
+  field(:amount, 2, type: :int64)
+  field(:hash_lock, 3, type: :bytes)
+  field(:expiration_height, 4, type: :uint32)
 end
 
 defmodule Lnrpc.Channel do
@@ -515,23 +516,23 @@ defmodule Lnrpc.Channel do
     :private
   ]
 
-  field :active, 1, type: :bool
-  field :remote_pubkey, 2, type: :string
-  field :channel_point, 3, type: :string
-  field :chan_id, 4, type: :uint64
-  field :capacity, 5, type: :int64
-  field :local_balance, 6, type: :int64
-  field :remote_balance, 7, type: :int64
-  field :commit_fee, 8, type: :int64
-  field :commit_weight, 9, type: :int64
-  field :fee_per_kw, 10, type: :int64
-  field :unsettled_balance, 11, type: :int64
-  field :total_satoshis_sent, 12, type: :int64
-  field :total_satoshis_received, 13, type: :int64
-  field :num_updates, 14, type: :uint64
-  field :pending_htlcs, 15, repeated: true, type: Lnrpc.HTLC
-  field :csv_delay, 16, type: :uint32
-  field :private, 17, type: :bool
+  field(:active, 1, type: :bool)
+  field(:remote_pubkey, 2, type: :string)
+  field(:channel_point, 3, type: :string)
+  field(:chan_id, 4, type: :uint64)
+  field(:capacity, 5, type: :int64)
+  field(:local_balance, 6, type: :int64)
+  field(:remote_balance, 7, type: :int64)
+  field(:commit_fee, 8, type: :int64)
+  field(:commit_weight, 9, type: :int64)
+  field(:fee_per_kw, 10, type: :int64)
+  field(:unsettled_balance, 11, type: :int64)
+  field(:total_satoshis_sent, 12, type: :int64)
+  field(:total_satoshis_received, 13, type: :int64)
+  field(:num_updates, 14, type: :uint64)
+  field(:pending_htlcs, 15, repeated: true, type: Lnrpc.HTLC)
+  field(:csv_delay, 16, type: :uint32)
+  field(:private, 17, type: :bool)
 end
 
 defmodule Lnrpc.ListChannelsRequest do
@@ -546,10 +547,10 @@ defmodule Lnrpc.ListChannelsRequest do
         }
   defstruct [:active_only, :inactive_only, :public_only, :private_only]
 
-  field :active_only, 1, type: :bool
-  field :inactive_only, 2, type: :bool
-  field :public_only, 3, type: :bool
-  field :private_only, 4, type: :bool
+  field(:active_only, 1, type: :bool)
+  field(:inactive_only, 2, type: :bool)
+  field(:public_only, 3, type: :bool)
+  field(:private_only, 4, type: :bool)
 end
 
 defmodule Lnrpc.ListChannelsResponse do
@@ -561,7 +562,7 @@ defmodule Lnrpc.ListChannelsResponse do
         }
   defstruct [:channels]
 
-  field :channels, 11, repeated: true, type: Lnrpc.Channel
+  field(:channels, 11, repeated: true, type: Lnrpc.Channel)
 end
 
 defmodule Lnrpc.ChannelCloseSummary do
@@ -593,28 +594,28 @@ defmodule Lnrpc.ChannelCloseSummary do
     :close_type
   ]
 
-  field :channel_point, 1, type: :string
-  field :chan_id, 2, type: :uint64
-  field :chain_hash, 3, type: :string
-  field :closing_tx_hash, 4, type: :string
-  field :remote_pubkey, 5, type: :string
-  field :capacity, 6, type: :int64
-  field :close_height, 7, type: :uint32
-  field :settled_balance, 8, type: :int64
-  field :time_locked_balance, 9, type: :int64
-  field :close_type, 10, type: Lnrpc.ChannelCloseSummary.ClosureType, enum: true
+  field(:channel_point, 1, type: :string)
+  field(:chan_id, 2, type: :uint64)
+  field(:chain_hash, 3, type: :string)
+  field(:closing_tx_hash, 4, type: :string)
+  field(:remote_pubkey, 5, type: :string)
+  field(:capacity, 6, type: :int64)
+  field(:close_height, 7, type: :uint32)
+  field(:settled_balance, 8, type: :int64)
+  field(:time_locked_balance, 9, type: :int64)
+  field(:close_type, 10, type: Lnrpc.ChannelCloseSummary.ClosureType, enum: true)
 end
 
 defmodule Lnrpc.ChannelCloseSummary.ClosureType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
-  field :COOPERATIVE_CLOSE, 0
-  field :LOCAL_FORCE_CLOSE, 1
-  field :REMOTE_FORCE_CLOSE, 2
-  field :BREACH_CLOSE, 3
-  field :FUNDING_CANCELED, 4
-  field :ABANDONED, 5
+  field(:COOPERATIVE_CLOSE, 0)
+  field(:LOCAL_FORCE_CLOSE, 1)
+  field(:REMOTE_FORCE_CLOSE, 2)
+  field(:BREACH_CLOSE, 3)
+  field(:FUNDING_CANCELED, 4)
+  field(:ABANDONED, 5)
 end
 
 defmodule Lnrpc.ClosedChannelsRequest do
@@ -631,12 +632,12 @@ defmodule Lnrpc.ClosedChannelsRequest do
         }
   defstruct [:cooperative, :local_force, :remote_force, :breach, :funding_canceled, :abandoned]
 
-  field :cooperative, 1, type: :bool
-  field :local_force, 2, type: :bool
-  field :remote_force, 3, type: :bool
-  field :breach, 4, type: :bool
-  field :funding_canceled, 5, type: :bool
-  field :abandoned, 6, type: :bool
+  field(:cooperative, 1, type: :bool)
+  field(:local_force, 2, type: :bool)
+  field(:remote_force, 3, type: :bool)
+  field(:breach, 4, type: :bool)
+  field(:funding_canceled, 5, type: :bool)
+  field(:abandoned, 6, type: :bool)
 end
 
 defmodule Lnrpc.ClosedChannelsResponse do
@@ -648,7 +649,7 @@ defmodule Lnrpc.ClosedChannelsResponse do
         }
   defstruct [:channels]
 
-  field :channels, 1, repeated: true, type: Lnrpc.ChannelCloseSummary
+  field(:channels, 1, repeated: true, type: Lnrpc.ChannelCloseSummary)
 end
 
 defmodule Lnrpc.Peer do
@@ -676,14 +677,14 @@ defmodule Lnrpc.Peer do
     :ping_time
   ]
 
-  field :pub_key, 1, type: :string
-  field :address, 3, type: :string
-  field :bytes_sent, 4, type: :uint64
-  field :bytes_recv, 5, type: :uint64
-  field :sat_sent, 6, type: :int64
-  field :sat_recv, 7, type: :int64
-  field :inbound, 8, type: :bool
-  field :ping_time, 9, type: :int64
+  field(:pub_key, 1, type: :string)
+  field(:address, 3, type: :string)
+  field(:bytes_sent, 4, type: :uint64)
+  field(:bytes_recv, 5, type: :uint64)
+  field(:sat_sent, 6, type: :int64)
+  field(:sat_recv, 7, type: :int64)
+  field(:inbound, 8, type: :bool)
+  field(:ping_time, 9, type: :int64)
 end
 
 defmodule Lnrpc.ListPeersRequest do
@@ -702,7 +703,7 @@ defmodule Lnrpc.ListPeersResponse do
         }
   defstruct [:peers]
 
-  field :peers, 1, repeated: true, type: Lnrpc.Peer
+  field(:peers, 1, repeated: true, type: Lnrpc.Peer)
 end
 
 defmodule Lnrpc.GetInfoRequest do
@@ -747,19 +748,19 @@ defmodule Lnrpc.GetInfoResponse do
     :version
   ]
 
-  field :identity_pubkey, 1, type: :string
-  field :alias, 2, type: :string
-  field :num_pending_channels, 3, type: :uint32
-  field :num_active_channels, 4, type: :uint32
-  field :num_peers, 5, type: :uint32
-  field :block_height, 6, type: :uint32
-  field :block_hash, 8, type: :string
-  field :synced_to_chain, 9, type: :bool
-  field :testnet, 10, type: :bool
-  field :chains, 11, repeated: true, type: :string
-  field :uris, 12, repeated: true, type: :string
-  field :best_header_timestamp, 13, type: :int64
-  field :version, 14, type: :string
+  field(:identity_pubkey, 1, type: :string)
+  field(:alias, 2, type: :string)
+  field(:num_pending_channels, 3, type: :uint32)
+  field(:num_active_channels, 4, type: :uint32)
+  field(:num_peers, 5, type: :uint32)
+  field(:block_height, 6, type: :uint32)
+  field(:block_hash, 8, type: :string)
+  field(:synced_to_chain, 9, type: :bool)
+  field(:testnet, 10, type: :bool)
+  field(:chains, 11, repeated: true, type: :string)
+  field(:uris, 12, repeated: true, type: :string)
+  field(:best_header_timestamp, 13, type: :int64)
+  field(:version, 14, type: :string)
 end
 
 defmodule Lnrpc.ConfirmationUpdate do
@@ -773,9 +774,9 @@ defmodule Lnrpc.ConfirmationUpdate do
         }
   defstruct [:block_sha, :block_height, :num_confs_left]
 
-  field :block_sha, 1, type: :bytes
-  field :block_height, 2, type: :int32
-  field :num_confs_left, 3, type: :uint32
+  field(:block_sha, 1, type: :bytes)
+  field(:block_height, 2, type: :int32)
+  field(:num_confs_left, 3, type: :uint32)
 end
 
 defmodule Lnrpc.ChannelOpenUpdate do
@@ -787,7 +788,7 @@ defmodule Lnrpc.ChannelOpenUpdate do
         }
   defstruct [:channel_point]
 
-  field :channel_point, 1, type: Lnrpc.ChannelPoint
+  field(:channel_point, 1, type: Lnrpc.ChannelPoint)
 end
 
 defmodule Lnrpc.ChannelCloseUpdate do
@@ -800,8 +801,8 @@ defmodule Lnrpc.ChannelCloseUpdate do
         }
   defstruct [:closing_txid, :success]
 
-  field :closing_txid, 1, type: :bytes
-  field :success, 2, type: :bool
+  field(:closing_txid, 1, type: :bytes)
+  field(:success, 2, type: :bool)
 end
 
 defmodule Lnrpc.CloseChannelRequest do
@@ -816,10 +817,10 @@ defmodule Lnrpc.CloseChannelRequest do
         }
   defstruct [:channel_point, :force, :target_conf, :sat_per_byte]
 
-  field :channel_point, 1, type: Lnrpc.ChannelPoint
-  field :force, 2, type: :bool
-  field :target_conf, 3, type: :int32
-  field :sat_per_byte, 4, type: :int64
+  field(:channel_point, 1, type: Lnrpc.ChannelPoint)
+  field(:force, 2, type: :bool)
+  field(:target_conf, 3, type: :int32)
+  field(:sat_per_byte, 4, type: :int64)
 end
 
 defmodule Lnrpc.CloseStatusUpdate do
@@ -831,10 +832,10 @@ defmodule Lnrpc.CloseStatusUpdate do
         }
   defstruct [:update]
 
-  oneof :update, 0
-  field :close_pending, 1, type: Lnrpc.PendingUpdate, oneof: 0
-  field :confirmation, 2, type: Lnrpc.ConfirmationUpdate, oneof: 0
-  field :chan_close, 3, type: Lnrpc.ChannelCloseUpdate, oneof: 0
+  oneof(:update, 0)
+  field(:close_pending, 1, type: Lnrpc.PendingUpdate, oneof: 0)
+  field(:confirmation, 2, type: Lnrpc.ConfirmationUpdate, oneof: 0)
+  field(:chan_close, 3, type: Lnrpc.ChannelCloseUpdate, oneof: 0)
 end
 
 defmodule Lnrpc.PendingUpdate do
@@ -847,8 +848,8 @@ defmodule Lnrpc.PendingUpdate do
         }
   defstruct [:txid, :output_index]
 
-  field :txid, 1, type: :bytes
-  field :output_index, 2, type: :uint32
+  field(:txid, 1, type: :bytes)
+  field(:output_index, 2, type: :uint32)
 end
 
 defmodule Lnrpc.OpenChannelRequest do
@@ -882,17 +883,17 @@ defmodule Lnrpc.OpenChannelRequest do
     :spend_unconfirmed
   ]
 
-  field :node_pubkey, 2, type: :bytes
-  field :node_pubkey_string, 3, type: :string
-  field :local_funding_amount, 4, type: :int64
-  field :push_sat, 5, type: :int64
-  field :target_conf, 6, type: :int32
-  field :sat_per_byte, 7, type: :int64
-  field :private, 8, type: :bool
-  field :min_htlc_msat, 9, type: :int64
-  field :remote_csv_delay, 10, type: :uint32
-  field :min_confs, 11, type: :int32
-  field :spend_unconfirmed, 12, type: :bool
+  field(:node_pubkey, 2, type: :bytes)
+  field(:node_pubkey_string, 3, type: :string)
+  field(:local_funding_amount, 4, type: :int64)
+  field(:push_sat, 5, type: :int64)
+  field(:target_conf, 6, type: :int32)
+  field(:sat_per_byte, 7, type: :int64)
+  field(:private, 8, type: :bool)
+  field(:min_htlc_msat, 9, type: :int64)
+  field(:remote_csv_delay, 10, type: :uint32)
+  field(:min_confs, 11, type: :int32)
+  field(:spend_unconfirmed, 12, type: :bool)
 end
 
 defmodule Lnrpc.OpenStatusUpdate do
@@ -904,10 +905,10 @@ defmodule Lnrpc.OpenStatusUpdate do
         }
   defstruct [:update]
 
-  oneof :update, 0
-  field :chan_pending, 1, type: Lnrpc.PendingUpdate, oneof: 0
-  field :confirmation, 2, type: Lnrpc.ConfirmationUpdate, oneof: 0
-  field :chan_open, 3, type: Lnrpc.ChannelOpenUpdate, oneof: 0
+  oneof(:update, 0)
+  field(:chan_pending, 1, type: Lnrpc.PendingUpdate, oneof: 0)
+  field(:confirmation, 2, type: Lnrpc.ConfirmationUpdate, oneof: 0)
+  field(:chan_open, 3, type: Lnrpc.ChannelOpenUpdate, oneof: 0)
 end
 
 defmodule Lnrpc.PendingHTLC do
@@ -924,12 +925,12 @@ defmodule Lnrpc.PendingHTLC do
         }
   defstruct [:incoming, :amount, :outpoint, :maturity_height, :blocks_til_maturity, :stage]
 
-  field :incoming, 1, type: :bool
-  field :amount, 2, type: :int64
-  field :outpoint, 3, type: :string
-  field :maturity_height, 4, type: :uint32
-  field :blocks_til_maturity, 5, type: :int32
-  field :stage, 6, type: :uint32
+  field(:incoming, 1, type: :bool)
+  field(:amount, 2, type: :int64)
+  field(:outpoint, 3, type: :string)
+  field(:maturity_height, 4, type: :uint32)
+  field(:blocks_til_maturity, 5, type: :int32)
+  field(:stage, 6, type: :uint32)
 end
 
 defmodule Lnrpc.PendingChannelsRequest do
@@ -958,23 +959,27 @@ defmodule Lnrpc.PendingChannelsResponse do
     :waiting_close_channels
   ]
 
-  field :total_limbo_balance, 1, type: :int64
+  field(:total_limbo_balance, 1, type: :int64)
 
-  field :pending_open_channels, 2,
+  field(:pending_open_channels, 2,
     repeated: true,
     type: Lnrpc.PendingChannelsResponse.PendingOpenChannel
+  )
 
-  field :pending_closing_channels, 3,
+  field(:pending_closing_channels, 3,
     repeated: true,
     type: Lnrpc.PendingChannelsResponse.ClosedChannel
+  )
 
-  field :pending_force_closing_channels, 4,
+  field(:pending_force_closing_channels, 4,
     repeated: true,
     type: Lnrpc.PendingChannelsResponse.ForceClosedChannel
+  )
 
-  field :waiting_close_channels, 5,
+  field(:waiting_close_channels, 5,
     repeated: true,
     type: Lnrpc.PendingChannelsResponse.WaitingCloseChannel
+  )
 end
 
 defmodule Lnrpc.PendingChannelsResponse.PendingChannel do
@@ -990,11 +995,11 @@ defmodule Lnrpc.PendingChannelsResponse.PendingChannel do
         }
   defstruct [:remote_node_pub, :channel_point, :capacity, :local_balance, :remote_balance]
 
-  field :remote_node_pub, 1, type: :string
-  field :channel_point, 2, type: :string
-  field :capacity, 3, type: :int64
-  field :local_balance, 4, type: :int64
-  field :remote_balance, 5, type: :int64
+  field(:remote_node_pub, 1, type: :string)
+  field(:channel_point, 2, type: :string)
+  field(:capacity, 3, type: :int64)
+  field(:local_balance, 4, type: :int64)
+  field(:remote_balance, 5, type: :int64)
 end
 
 defmodule Lnrpc.PendingChannelsResponse.PendingOpenChannel do
@@ -1010,11 +1015,11 @@ defmodule Lnrpc.PendingChannelsResponse.PendingOpenChannel do
         }
   defstruct [:channel, :confirmation_height, :commit_fee, :commit_weight, :fee_per_kw]
 
-  field :channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel
-  field :confirmation_height, 2, type: :uint32
-  field :commit_fee, 4, type: :int64
-  field :commit_weight, 5, type: :int64
-  field :fee_per_kw, 6, type: :int64
+  field(:channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel)
+  field(:confirmation_height, 2, type: :uint32)
+  field(:commit_fee, 4, type: :int64)
+  field(:commit_weight, 5, type: :int64)
+  field(:fee_per_kw, 6, type: :int64)
 end
 
 defmodule Lnrpc.PendingChannelsResponse.WaitingCloseChannel do
@@ -1027,8 +1032,8 @@ defmodule Lnrpc.PendingChannelsResponse.WaitingCloseChannel do
         }
   defstruct [:channel, :limbo_balance]
 
-  field :channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel
-  field :limbo_balance, 2, type: :int64
+  field(:channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel)
+  field(:limbo_balance, 2, type: :int64)
 end
 
 defmodule Lnrpc.PendingChannelsResponse.ClosedChannel do
@@ -1041,8 +1046,8 @@ defmodule Lnrpc.PendingChannelsResponse.ClosedChannel do
         }
   defstruct [:channel, :closing_txid]
 
-  field :channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel
-  field :closing_txid, 2, type: :string
+  field(:channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel)
+  field(:closing_txid, 2, type: :string)
 end
 
 defmodule Lnrpc.PendingChannelsResponse.ForceClosedChannel do
@@ -1068,13 +1073,13 @@ defmodule Lnrpc.PendingChannelsResponse.ForceClosedChannel do
     :pending_htlcs
   ]
 
-  field :channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel
-  field :closing_txid, 2, type: :string
-  field :limbo_balance, 3, type: :int64
-  field :maturity_height, 4, type: :uint32
-  field :blocks_til_maturity, 5, type: :int32
-  field :recovered_balance, 6, type: :int64
-  field :pending_htlcs, 8, repeated: true, type: Lnrpc.PendingHTLC
+  field(:channel, 1, type: Lnrpc.PendingChannelsResponse.PendingChannel)
+  field(:closing_txid, 2, type: :string)
+  field(:limbo_balance, 3, type: :int64)
+  field(:maturity_height, 4, type: :uint32)
+  field(:blocks_til_maturity, 5, type: :int32)
+  field(:recovered_balance, 6, type: :int64)
+  field(:pending_htlcs, 8, repeated: true, type: Lnrpc.PendingHTLC)
 end
 
 defmodule Lnrpc.WalletBalanceRequest do
@@ -1095,9 +1100,9 @@ defmodule Lnrpc.WalletBalanceResponse do
         }
   defstruct [:total_balance, :confirmed_balance, :unconfirmed_balance]
 
-  field :total_balance, 1, type: :int64
-  field :confirmed_balance, 2, type: :int64
-  field :unconfirmed_balance, 3, type: :int64
+  field(:total_balance, 1, type: :int64)
+  field(:confirmed_balance, 2, type: :int64)
+  field(:unconfirmed_balance, 3, type: :int64)
 end
 
 defmodule Lnrpc.ChannelBalanceRequest do
@@ -1117,8 +1122,8 @@ defmodule Lnrpc.ChannelBalanceResponse do
         }
   defstruct [:balance, :pending_open_balance]
 
-  field :balance, 1, type: :int64
-  field :pending_open_balance, 2, type: :int64
+  field(:balance, 1, type: :int64)
+  field(:pending_open_balance, 2, type: :int64)
 end
 
 defmodule Lnrpc.QueryRoutesRequest do
@@ -1134,11 +1139,11 @@ defmodule Lnrpc.QueryRoutesRequest do
         }
   defstruct [:pub_key, :amt, :num_routes, :final_cltv_delta, :fee_limit]
 
-  field :pub_key, 1, type: :string
-  field :amt, 2, type: :int64
-  field :num_routes, 3, type: :int32
-  field :final_cltv_delta, 4, type: :int32
-  field :fee_limit, 5, type: Lnrpc.FeeLimit
+  field(:pub_key, 1, type: :string)
+  field(:amt, 2, type: :int64)
+  field(:num_routes, 3, type: :int32)
+  field(:final_cltv_delta, 4, type: :int32)
+  field(:fee_limit, 5, type: Lnrpc.FeeLimit)
 end
 
 defmodule Lnrpc.QueryRoutesResponse do
@@ -1150,7 +1155,7 @@ defmodule Lnrpc.QueryRoutesResponse do
         }
   defstruct [:routes]
 
-  field :routes, 1, repeated: true, type: Lnrpc.Route
+  field(:routes, 1, repeated: true, type: Lnrpc.Route)
 end
 
 defmodule Lnrpc.Hop do
@@ -1176,13 +1181,13 @@ defmodule Lnrpc.Hop do
     :fee_msat
   ]
 
-  field :chan_id, 1, type: :uint64
-  field :chan_capacity, 2, type: :int64
-  field :amt_to_forward, 3, type: :int64, deprecated: true
-  field :fee, 4, type: :int64, deprecated: true
-  field :expiry, 5, type: :uint32
-  field :amt_to_forward_msat, 6, type: :int64
-  field :fee_msat, 7, type: :int64
+  field(:chan_id, 1, type: :uint64)
+  field(:chan_capacity, 2, type: :int64)
+  field(:amt_to_forward, 3, type: :int64, deprecated: true)
+  field(:fee, 4, type: :int64, deprecated: true)
+  field(:expiry, 5, type: :uint32)
+  field(:amt_to_forward_msat, 6, type: :int64)
+  field(:fee_msat, 7, type: :int64)
 end
 
 defmodule Lnrpc.Route do
@@ -1199,12 +1204,12 @@ defmodule Lnrpc.Route do
         }
   defstruct [:total_time_lock, :total_fees, :total_amt, :hops, :total_fees_msat, :total_amt_msat]
 
-  field :total_time_lock, 1, type: :uint32
-  field :total_fees, 2, type: :int64, deprecated: true
-  field :total_amt, 3, type: :int64, deprecated: true
-  field :hops, 4, repeated: true, type: Lnrpc.Hop
-  field :total_fees_msat, 5, type: :int64
-  field :total_amt_msat, 6, type: :int64
+  field(:total_time_lock, 1, type: :uint32)
+  field(:total_fees, 2, type: :int64, deprecated: true)
+  field(:total_amt, 3, type: :int64, deprecated: true)
+  field(:hops, 4, repeated: true, type: Lnrpc.Hop)
+  field(:total_fees_msat, 5, type: :int64)
+  field(:total_amt_msat, 6, type: :int64)
 end
 
 defmodule Lnrpc.NodeInfoRequest do
@@ -1216,7 +1221,7 @@ defmodule Lnrpc.NodeInfoRequest do
         }
   defstruct [:pub_key]
 
-  field :pub_key, 1, type: :string
+  field(:pub_key, 1, type: :string)
 end
 
 defmodule Lnrpc.NodeInfo do
@@ -1230,9 +1235,9 @@ defmodule Lnrpc.NodeInfo do
         }
   defstruct [:node, :num_channels, :total_capacity]
 
-  field :node, 1, type: Lnrpc.LightningNode
-  field :num_channels, 2, type: :uint32
-  field :total_capacity, 3, type: :int64
+  field(:node, 1, type: Lnrpc.LightningNode)
+  field(:num_channels, 2, type: :uint32)
+  field(:total_capacity, 3, type: :int64)
 end
 
 defmodule Lnrpc.LightningNode do
@@ -1248,11 +1253,11 @@ defmodule Lnrpc.LightningNode do
         }
   defstruct [:last_update, :pub_key, :alias, :addresses, :color]
 
-  field :last_update, 1, type: :uint32
-  field :pub_key, 2, type: :string
-  field :alias, 3, type: :string
-  field :addresses, 4, repeated: true, type: Lnrpc.NodeAddress
-  field :color, 5, type: :string
+  field(:last_update, 1, type: :uint32)
+  field(:pub_key, 2, type: :string)
+  field(:alias, 3, type: :string)
+  field(:addresses, 4, repeated: true, type: Lnrpc.NodeAddress)
+  field(:color, 5, type: :string)
 end
 
 defmodule Lnrpc.NodeAddress do
@@ -1265,8 +1270,8 @@ defmodule Lnrpc.NodeAddress do
         }
   defstruct [:network, :addr]
 
-  field :network, 1, type: :string
-  field :addr, 2, type: :string
+  field(:network, 1, type: :string)
+  field(:addr, 2, type: :string)
 end
 
 defmodule Lnrpc.RoutingPolicy do
@@ -1282,11 +1287,11 @@ defmodule Lnrpc.RoutingPolicy do
         }
   defstruct [:time_lock_delta, :min_htlc, :fee_base_msat, :fee_rate_milli_msat, :disabled]
 
-  field :time_lock_delta, 1, type: :uint32
-  field :min_htlc, 2, type: :int64
-  field :fee_base_msat, 3, type: :int64
-  field :fee_rate_milli_msat, 4, type: :int64
-  field :disabled, 5, type: :bool
+  field(:time_lock_delta, 1, type: :uint32)
+  field(:min_htlc, 2, type: :int64)
+  field(:fee_base_msat, 3, type: :int64)
+  field(:fee_rate_milli_msat, 4, type: :int64)
+  field(:disabled, 5, type: :bool)
 end
 
 defmodule Lnrpc.ChannelEdge do
@@ -1314,14 +1319,14 @@ defmodule Lnrpc.ChannelEdge do
     :node2_policy
   ]
 
-  field :channel_id, 1, type: :uint64
-  field :chan_point, 2, type: :string
-  field :last_update, 3, type: :uint32
-  field :node1_pub, 4, type: :string
-  field :node2_pub, 5, type: :string
-  field :capacity, 6, type: :int64
-  field :node1_policy, 7, type: Lnrpc.RoutingPolicy
-  field :node2_policy, 8, type: Lnrpc.RoutingPolicy
+  field(:channel_id, 1, type: :uint64)
+  field(:chan_point, 2, type: :string)
+  field(:last_update, 3, type: :uint32)
+  field(:node1_pub, 4, type: :string)
+  field(:node2_pub, 5, type: :string)
+  field(:capacity, 6, type: :int64)
+  field(:node1_policy, 7, type: Lnrpc.RoutingPolicy)
+  field(:node2_policy, 8, type: Lnrpc.RoutingPolicy)
 end
 
 defmodule Lnrpc.ChannelGraphRequest do
@@ -1333,7 +1338,7 @@ defmodule Lnrpc.ChannelGraphRequest do
         }
   defstruct [:include_unannounced]
 
-  field :include_unannounced, 1, type: :bool
+  field(:include_unannounced, 1, type: :bool)
 end
 
 defmodule Lnrpc.ChannelGraph do
@@ -1346,8 +1351,8 @@ defmodule Lnrpc.ChannelGraph do
         }
   defstruct [:nodes, :edges]
 
-  field :nodes, 1, repeated: true, type: Lnrpc.LightningNode
-  field :edges, 2, repeated: true, type: Lnrpc.ChannelEdge
+  field(:nodes, 1, repeated: true, type: Lnrpc.LightningNode)
+  field(:edges, 2, repeated: true, type: Lnrpc.ChannelEdge)
 end
 
 defmodule Lnrpc.ChanInfoRequest do
@@ -1359,7 +1364,7 @@ defmodule Lnrpc.ChanInfoRequest do
         }
   defstruct [:chan_id]
 
-  field :chan_id, 1, type: :uint64
+  field(:chan_id, 1, type: :uint64)
 end
 
 defmodule Lnrpc.NetworkInfoRequest do
@@ -1396,15 +1401,15 @@ defmodule Lnrpc.NetworkInfo do
     :max_channel_size
   ]
 
-  field :graph_diameter, 1, type: :uint32
-  field :avg_out_degree, 2, type: :double
-  field :max_out_degree, 3, type: :uint32
-  field :num_nodes, 4, type: :uint32
-  field :num_channels, 5, type: :uint32
-  field :total_network_capacity, 6, type: :int64
-  field :avg_channel_size, 7, type: :double
-  field :min_channel_size, 8, type: :int64
-  field :max_channel_size, 9, type: :int64
+  field(:graph_diameter, 1, type: :uint32)
+  field(:avg_out_degree, 2, type: :double)
+  field(:max_out_degree, 3, type: :uint32)
+  field(:num_nodes, 4, type: :uint32)
+  field(:num_channels, 5, type: :uint32)
+  field(:total_network_capacity, 6, type: :int64)
+  field(:avg_channel_size, 7, type: :double)
+  field(:min_channel_size, 8, type: :int64)
+  field(:max_channel_size, 9, type: :int64)
 end
 
 defmodule Lnrpc.StopRequest do
@@ -1439,9 +1444,9 @@ defmodule Lnrpc.GraphTopologyUpdate do
         }
   defstruct [:node_updates, :channel_updates, :closed_chans]
 
-  field :node_updates, 1, repeated: true, type: Lnrpc.NodeUpdate
-  field :channel_updates, 2, repeated: true, type: Lnrpc.ChannelEdgeUpdate
-  field :closed_chans, 3, repeated: true, type: Lnrpc.ClosedChannelUpdate
+  field(:node_updates, 1, repeated: true, type: Lnrpc.NodeUpdate)
+  field(:channel_updates, 2, repeated: true, type: Lnrpc.ChannelEdgeUpdate)
+  field(:closed_chans, 3, repeated: true, type: Lnrpc.ClosedChannelUpdate)
 end
 
 defmodule Lnrpc.NodeUpdate do
@@ -1456,10 +1461,10 @@ defmodule Lnrpc.NodeUpdate do
         }
   defstruct [:addresses, :identity_key, :global_features, :alias]
 
-  field :addresses, 1, repeated: true, type: :string
-  field :identity_key, 2, type: :string
-  field :global_features, 3, type: :bytes
-  field :alias, 4, type: :string
+  field(:addresses, 1, repeated: true, type: :string)
+  field(:identity_key, 2, type: :string)
+  field(:global_features, 3, type: :bytes)
+  field(:alias, 4, type: :string)
 end
 
 defmodule Lnrpc.ChannelEdgeUpdate do
@@ -1483,12 +1488,12 @@ defmodule Lnrpc.ChannelEdgeUpdate do
     :connecting_node
   ]
 
-  field :chan_id, 1, type: :uint64
-  field :chan_point, 2, type: Lnrpc.ChannelPoint
-  field :capacity, 3, type: :int64
-  field :routing_policy, 4, type: Lnrpc.RoutingPolicy
-  field :advertising_node, 5, type: :string
-  field :connecting_node, 6, type: :string
+  field(:chan_id, 1, type: :uint64)
+  field(:chan_point, 2, type: Lnrpc.ChannelPoint)
+  field(:capacity, 3, type: :int64)
+  field(:routing_policy, 4, type: Lnrpc.RoutingPolicy)
+  field(:advertising_node, 5, type: :string)
+  field(:connecting_node, 6, type: :string)
 end
 
 defmodule Lnrpc.ClosedChannelUpdate do
@@ -1503,10 +1508,10 @@ defmodule Lnrpc.ClosedChannelUpdate do
         }
   defstruct [:chan_id, :capacity, :closed_height, :chan_point]
 
-  field :chan_id, 1, type: :uint64
-  field :capacity, 2, type: :int64
-  field :closed_height, 3, type: :uint32
-  field :chan_point, 4, type: Lnrpc.ChannelPoint
+  field(:chan_id, 1, type: :uint64)
+  field(:capacity, 2, type: :int64)
+  field(:closed_height, 3, type: :uint32)
+  field(:chan_point, 4, type: Lnrpc.ChannelPoint)
 end
 
 defmodule Lnrpc.HopHint do
@@ -1522,11 +1527,11 @@ defmodule Lnrpc.HopHint do
         }
   defstruct [:node_id, :chan_id, :fee_base_msat, :fee_proportional_millionths, :cltv_expiry_delta]
 
-  field :node_id, 1, type: :string
-  field :chan_id, 2, type: :uint64
-  field :fee_base_msat, 3, type: :uint32
-  field :fee_proportional_millionths, 4, type: :uint32
-  field :cltv_expiry_delta, 5, type: :uint32
+  field(:node_id, 1, type: :string)
+  field(:chan_id, 2, type: :uint64)
+  field(:fee_base_msat, 3, type: :uint32)
+  field(:fee_proportional_millionths, 4, type: :uint32)
+  field(:cltv_expiry_delta, 5, type: :uint32)
 end
 
 defmodule Lnrpc.RouteHint do
@@ -1538,7 +1543,7 @@ defmodule Lnrpc.RouteHint do
         }
   defstruct [:hop_hints]
 
-  field :hop_hints, 1, repeated: true, type: Lnrpc.HopHint
+  field(:hop_hints, 1, repeated: true, type: Lnrpc.HopHint)
 end
 
 defmodule Lnrpc.Invoice do
@@ -1590,26 +1595,26 @@ defmodule Lnrpc.Invoice do
     :amt_paid_msat
   ]
 
-  field :memo, 1, type: :string
-  field :receipt, 2, type: :bytes
-  field :r_preimage, 3, type: :bytes
-  field :r_hash, 4, type: :bytes
-  field :value, 5, type: :int64
-  field :settled, 6, type: :bool
-  field :creation_date, 7, type: :int64
-  field :settle_date, 8, type: :int64
-  field :payment_request, 9, type: :string
-  field :description_hash, 10, type: :bytes
-  field :expiry, 11, type: :int64
-  field :fallback_addr, 12, type: :string
-  field :cltv_expiry, 13, type: :uint64
-  field :route_hints, 14, repeated: true, type: Lnrpc.RouteHint
-  field :private, 15, type: :bool
-  field :add_index, 16, type: :uint64
-  field :settle_index, 17, type: :uint64
-  field :amt_paid, 18, type: :int64, deprecated: true
-  field :amt_paid_sat, 19, type: :int64
-  field :amt_paid_msat, 20, type: :int64
+  field(:memo, 1, type: :string)
+  field(:receipt, 2, type: :bytes)
+  field(:r_preimage, 3, type: :bytes)
+  field(:r_hash, 4, type: :bytes)
+  field(:value, 5, type: :int64)
+  field(:settled, 6, type: :bool)
+  field(:creation_date, 7, type: :int64)
+  field(:settle_date, 8, type: :int64)
+  field(:payment_request, 9, type: :string)
+  field(:description_hash, 10, type: :bytes)
+  field(:expiry, 11, type: :int64)
+  field(:fallback_addr, 12, type: :string)
+  field(:cltv_expiry, 13, type: :uint64)
+  field(:route_hints, 14, repeated: true, type: Lnrpc.RouteHint)
+  field(:private, 15, type: :bool)
+  field(:add_index, 16, type: :uint64)
+  field(:settle_index, 17, type: :uint64)
+  field(:amt_paid, 18, type: :int64, deprecated: true)
+  field(:amt_paid_sat, 19, type: :int64)
+  field(:amt_paid_msat, 20, type: :int64)
 end
 
 defmodule Lnrpc.AddInvoiceResponse do
@@ -1623,9 +1628,9 @@ defmodule Lnrpc.AddInvoiceResponse do
         }
   defstruct [:r_hash, :payment_request, :add_index]
 
-  field :r_hash, 1, type: :bytes
-  field :payment_request, 2, type: :string
-  field :add_index, 16, type: :uint64
+  field(:r_hash, 1, type: :bytes)
+  field(:payment_request, 2, type: :string)
+  field(:add_index, 16, type: :uint64)
 end
 
 defmodule Lnrpc.PaymentHash do
@@ -1638,8 +1643,8 @@ defmodule Lnrpc.PaymentHash do
         }
   defstruct [:r_hash_str, :r_hash]
 
-  field :r_hash_str, 1, type: :string
-  field :r_hash, 2, type: :bytes
+  field(:r_hash_str, 1, type: :string)
+  field(:r_hash, 2, type: :bytes)
 end
 
 defmodule Lnrpc.ListInvoiceRequest do
@@ -1654,10 +1659,10 @@ defmodule Lnrpc.ListInvoiceRequest do
         }
   defstruct [:pending_only, :index_offset, :num_max_invoices, :reversed]
 
-  field :pending_only, 1, type: :bool
-  field :index_offset, 4, type: :uint64
-  field :num_max_invoices, 5, type: :uint64
-  field :reversed, 6, type: :bool
+  field(:pending_only, 1, type: :bool)
+  field(:index_offset, 4, type: :uint64)
+  field(:num_max_invoices, 5, type: :uint64)
+  field(:reversed, 6, type: :bool)
 end
 
 defmodule Lnrpc.ListInvoiceResponse do
@@ -1671,9 +1676,9 @@ defmodule Lnrpc.ListInvoiceResponse do
         }
   defstruct [:invoices, :last_index_offset, :first_index_offset]
 
-  field :invoices, 1, repeated: true, type: Lnrpc.Invoice
-  field :last_index_offset, 2, type: :uint64
-  field :first_index_offset, 3, type: :uint64
+  field(:invoices, 1, repeated: true, type: Lnrpc.Invoice)
+  field(:last_index_offset, 2, type: :uint64)
+  field(:first_index_offset, 3, type: :uint64)
 end
 
 defmodule Lnrpc.InvoiceSubscription do
@@ -1686,8 +1691,8 @@ defmodule Lnrpc.InvoiceSubscription do
         }
   defstruct [:add_index, :settle_index]
 
-  field :add_index, 1, type: :uint64
-  field :settle_index, 2, type: :uint64
+  field(:add_index, 1, type: :uint64)
+  field(:settle_index, 2, type: :uint64)
 end
 
 defmodule Lnrpc.Payment do
@@ -1715,14 +1720,14 @@ defmodule Lnrpc.Payment do
     :value_msat
   ]
 
-  field :payment_hash, 1, type: :string
-  field :value, 2, type: :int64, deprecated: true
-  field :creation_date, 3, type: :int64
-  field :path, 4, repeated: true, type: :string
-  field :fee, 5, type: :int64
-  field :payment_preimage, 6, type: :string
-  field :value_sat, 7, type: :int64
-  field :value_msat, 8, type: :int64
+  field(:payment_hash, 1, type: :string)
+  field(:value, 2, type: :int64, deprecated: true)
+  field(:creation_date, 3, type: :int64)
+  field(:path, 4, repeated: true, type: :string)
+  field(:fee, 5, type: :int64)
+  field(:payment_preimage, 6, type: :string)
+  field(:value_sat, 7, type: :int64)
+  field(:value_msat, 8, type: :int64)
 end
 
 defmodule Lnrpc.ListPaymentsRequest do
@@ -1741,7 +1746,7 @@ defmodule Lnrpc.ListPaymentsResponse do
         }
   defstruct [:payments]
 
-  field :payments, 1, repeated: true, type: Lnrpc.Payment
+  field(:payments, 1, repeated: true, type: Lnrpc.Payment)
 end
 
 defmodule Lnrpc.DeleteAllPaymentsRequest do
@@ -1767,7 +1772,7 @@ defmodule Lnrpc.AbandonChannelRequest do
         }
   defstruct [:channel_point]
 
-  field :channel_point, 1, type: Lnrpc.ChannelPoint
+  field(:channel_point, 1, type: Lnrpc.ChannelPoint)
 end
 
 defmodule Lnrpc.AbandonChannelResponse do
@@ -1787,8 +1792,8 @@ defmodule Lnrpc.DebugLevelRequest do
         }
   defstruct [:show, :level_spec]
 
-  field :show, 1, type: :bool
-  field :level_spec, 2, type: :string
+  field(:show, 1, type: :bool)
+  field(:level_spec, 2, type: :string)
 end
 
 defmodule Lnrpc.DebugLevelResponse do
@@ -1800,7 +1805,7 @@ defmodule Lnrpc.DebugLevelResponse do
         }
   defstruct [:sub_systems]
 
-  field :sub_systems, 1, type: :string
+  field(:sub_systems, 1, type: :string)
 end
 
 defmodule Lnrpc.PayReqString do
@@ -1812,7 +1817,7 @@ defmodule Lnrpc.PayReqString do
         }
   defstruct [:pay_req]
 
-  field :pay_req, 1, type: :string
+  field(:pay_req, 1, type: :string)
 end
 
 defmodule Lnrpc.PayReq do
@@ -1844,16 +1849,16 @@ defmodule Lnrpc.PayReq do
     :route_hints
   ]
 
-  field :destination, 1, type: :string
-  field :payment_hash, 2, type: :string
-  field :num_satoshis, 3, type: :int64
-  field :timestamp, 4, type: :int64
-  field :expiry, 5, type: :int64
-  field :description, 6, type: :string
-  field :description_hash, 7, type: :string
-  field :fallback_addr, 8, type: :string
-  field :cltv_expiry, 9, type: :int64
-  field :route_hints, 10, repeated: true, type: Lnrpc.RouteHint
+  field(:destination, 1, type: :string)
+  field(:payment_hash, 2, type: :string)
+  field(:num_satoshis, 3, type: :int64)
+  field(:timestamp, 4, type: :int64)
+  field(:expiry, 5, type: :int64)
+  field(:description, 6, type: :string)
+  field(:description_hash, 7, type: :string)
+  field(:fallback_addr, 8, type: :string)
+  field(:cltv_expiry, 9, type: :int64)
+  field(:route_hints, 10, repeated: true, type: Lnrpc.RouteHint)
 end
 
 defmodule Lnrpc.FeeReportRequest do
@@ -1875,10 +1880,10 @@ defmodule Lnrpc.ChannelFeeReport do
         }
   defstruct [:chan_point, :base_fee_msat, :fee_per_mil, :fee_rate]
 
-  field :chan_point, 1, type: :string
-  field :base_fee_msat, 2, type: :int64
-  field :fee_per_mil, 3, type: :int64
-  field :fee_rate, 4, type: :double
+  field(:chan_point, 1, type: :string)
+  field(:base_fee_msat, 2, type: :int64)
+  field(:fee_per_mil, 3, type: :int64)
+  field(:fee_rate, 4, type: :double)
 end
 
 defmodule Lnrpc.FeeReportResponse do
@@ -1893,10 +1898,10 @@ defmodule Lnrpc.FeeReportResponse do
         }
   defstruct [:channel_fees, :day_fee_sum, :week_fee_sum, :month_fee_sum]
 
-  field :channel_fees, 1, repeated: true, type: Lnrpc.ChannelFeeReport
-  field :day_fee_sum, 2, type: :uint64
-  field :week_fee_sum, 3, type: :uint64
-  field :month_fee_sum, 4, type: :uint64
+  field(:channel_fees, 1, repeated: true, type: Lnrpc.ChannelFeeReport)
+  field(:day_fee_sum, 2, type: :uint64)
+  field(:week_fee_sum, 3, type: :uint64)
+  field(:month_fee_sum, 4, type: :uint64)
 end
 
 defmodule Lnrpc.PolicyUpdateRequest do
@@ -1911,12 +1916,12 @@ defmodule Lnrpc.PolicyUpdateRequest do
         }
   defstruct [:scope, :base_fee_msat, :fee_rate, :time_lock_delta]
 
-  oneof :scope, 0
-  field :global, 1, type: :bool, oneof: 0
-  field :chan_point, 2, type: Lnrpc.ChannelPoint, oneof: 0
-  field :base_fee_msat, 3, type: :int64
-  field :fee_rate, 4, type: :double
-  field :time_lock_delta, 5, type: :uint32
+  oneof(:scope, 0)
+  field(:global, 1, type: :bool, oneof: 0)
+  field(:chan_point, 2, type: Lnrpc.ChannelPoint, oneof: 0)
+  field(:base_fee_msat, 3, type: :int64)
+  field(:fee_rate, 4, type: :double)
+  field(:time_lock_delta, 5, type: :uint32)
 end
 
 defmodule Lnrpc.PolicyUpdateResponse do
@@ -1938,10 +1943,10 @@ defmodule Lnrpc.ForwardingHistoryRequest do
         }
   defstruct [:start_time, :end_time, :index_offset, :num_max_events]
 
-  field :start_time, 1, type: :uint64
-  field :end_time, 2, type: :uint64
-  field :index_offset, 3, type: :uint32
-  field :num_max_events, 4, type: :uint32
+  field(:start_time, 1, type: :uint64)
+  field(:end_time, 2, type: :uint64)
+  field(:index_offset, 3, type: :uint32)
+  field(:num_max_events, 4, type: :uint32)
 end
 
 defmodule Lnrpc.ForwardingEvent do
@@ -1958,12 +1963,12 @@ defmodule Lnrpc.ForwardingEvent do
         }
   defstruct [:timestamp, :chan_id_in, :chan_id_out, :amt_in, :amt_out, :fee]
 
-  field :timestamp, 1, type: :uint64
-  field :chan_id_in, 2, type: :uint64
-  field :chan_id_out, 4, type: :uint64
-  field :amt_in, 5, type: :uint64
-  field :amt_out, 6, type: :uint64
-  field :fee, 7, type: :uint64
+  field(:timestamp, 1, type: :uint64)
+  field(:chan_id_in, 2, type: :uint64)
+  field(:chan_id_out, 4, type: :uint64)
+  field(:amt_in, 5, type: :uint64)
+  field(:amt_out, 6, type: :uint64)
+  field(:fee, 7, type: :uint64)
 end
 
 defmodule Lnrpc.ForwardingHistoryResponse do
@@ -1976,18 +1981,18 @@ defmodule Lnrpc.ForwardingHistoryResponse do
         }
   defstruct [:forwarding_events, :last_offset_index]
 
-  field :forwarding_events, 1, repeated: true, type: Lnrpc.ForwardingEvent
-  field :last_offset_index, 2, type: :uint32
+  field(:forwarding_events, 1, repeated: true, type: Lnrpc.ForwardingEvent)
+  field(:last_offset_index, 2, type: :uint32)
 end
 
 defmodule Lnrpc.WalletUnlocker.Service do
   @moduledoc false
   use GRPC.Service, name: "lnrpc.WalletUnlocker"
 
-  rpc :GenSeed, Lnrpc.GenSeedRequest, Lnrpc.GenSeedResponse
-  rpc :InitWallet, Lnrpc.InitWalletRequest, Lnrpc.InitWalletResponse
-  rpc :UnlockWallet, Lnrpc.UnlockWalletRequest, Lnrpc.UnlockWalletResponse
-  rpc :ChangePassword, Lnrpc.ChangePasswordRequest, Lnrpc.ChangePasswordResponse
+  rpc(:GenSeed, Lnrpc.GenSeedRequest, Lnrpc.GenSeedResponse)
+  rpc(:InitWallet, Lnrpc.InitWalletRequest, Lnrpc.InitWalletResponse)
+  rpc(:UnlockWallet, Lnrpc.UnlockWalletRequest, Lnrpc.UnlockWalletResponse)
+  rpc(:ChangePassword, Lnrpc.ChangePasswordRequest, Lnrpc.ChangePasswordResponse)
 end
 
 defmodule Lnrpc.WalletUnlocker.Stub do
@@ -1999,48 +2004,48 @@ defmodule Lnrpc.Lightning.Service do
   @moduledoc false
   use GRPC.Service, name: "lnrpc.Lightning"
 
-  rpc :WalletBalance, Lnrpc.WalletBalanceRequest, Lnrpc.WalletBalanceResponse
-  rpc :ChannelBalance, Lnrpc.ChannelBalanceRequest, Lnrpc.ChannelBalanceResponse
-  rpc :GetTransactions, Lnrpc.GetTransactionsRequest, Lnrpc.TransactionDetails
-  rpc :SendCoins, Lnrpc.SendCoinsRequest, Lnrpc.SendCoinsResponse
-  rpc :SubscribeTransactions, Lnrpc.GetTransactionsRequest, stream(Lnrpc.Transaction)
-  rpc :SendMany, Lnrpc.SendManyRequest, Lnrpc.SendManyResponse
-  rpc :NewAddress, Lnrpc.NewAddressRequest, Lnrpc.NewAddressResponse
-  rpc :SignMessage, Lnrpc.SignMessageRequest, Lnrpc.SignMessageResponse
-  rpc :VerifyMessage, Lnrpc.VerifyMessageRequest, Lnrpc.VerifyMessageResponse
-  rpc :ConnectPeer, Lnrpc.ConnectPeerRequest, Lnrpc.ConnectPeerResponse
-  rpc :DisconnectPeer, Lnrpc.DisconnectPeerRequest, Lnrpc.DisconnectPeerResponse
-  rpc :ListPeers, Lnrpc.ListPeersRequest, Lnrpc.ListPeersResponse
-  rpc :GetInfo, Lnrpc.GetInfoRequest, Lnrpc.GetInfoResponse
-  rpc :PendingChannels, Lnrpc.PendingChannelsRequest, Lnrpc.PendingChannelsResponse
-  rpc :ListChannels, Lnrpc.ListChannelsRequest, Lnrpc.ListChannelsResponse
-  rpc :ClosedChannels, Lnrpc.ClosedChannelsRequest, Lnrpc.ClosedChannelsResponse
-  rpc :OpenChannelSync, Lnrpc.OpenChannelRequest, Lnrpc.ChannelPoint
-  rpc :OpenChannel, Lnrpc.OpenChannelRequest, stream(Lnrpc.OpenStatusUpdate)
-  rpc :CloseChannel, Lnrpc.CloseChannelRequest, stream(Lnrpc.CloseStatusUpdate)
-  rpc :AbandonChannel, Lnrpc.AbandonChannelRequest, Lnrpc.AbandonChannelResponse
-  rpc :SendPayment, stream(Lnrpc.SendRequest), stream(Lnrpc.SendResponse)
-  rpc :SendPaymentSync, Lnrpc.SendRequest, Lnrpc.SendResponse
-  rpc :SendToRoute, stream(Lnrpc.SendToRouteRequest), stream(Lnrpc.SendResponse)
-  rpc :SendToRouteSync, Lnrpc.SendToRouteRequest, Lnrpc.SendResponse
-  rpc :AddInvoice, Lnrpc.Invoice, Lnrpc.AddInvoiceResponse
-  rpc :ListInvoices, Lnrpc.ListInvoiceRequest, Lnrpc.ListInvoiceResponse
-  rpc :LookupInvoice, Lnrpc.PaymentHash, Lnrpc.Invoice
-  rpc :SubscribeInvoices, Lnrpc.InvoiceSubscription, stream(Lnrpc.Invoice)
-  rpc :DecodePayReq, Lnrpc.PayReqString, Lnrpc.PayReq
-  rpc :ListPayments, Lnrpc.ListPaymentsRequest, Lnrpc.ListPaymentsResponse
-  rpc :DeleteAllPayments, Lnrpc.DeleteAllPaymentsRequest, Lnrpc.DeleteAllPaymentsResponse
-  rpc :DescribeGraph, Lnrpc.ChannelGraphRequest, Lnrpc.ChannelGraph
-  rpc :GetChanInfo, Lnrpc.ChanInfoRequest, Lnrpc.ChannelEdge
-  rpc :GetNodeInfo, Lnrpc.NodeInfoRequest, Lnrpc.NodeInfo
-  rpc :QueryRoutes, Lnrpc.QueryRoutesRequest, Lnrpc.QueryRoutesResponse
-  rpc :GetNetworkInfo, Lnrpc.NetworkInfoRequest, Lnrpc.NetworkInfo
-  rpc :StopDaemon, Lnrpc.StopRequest, Lnrpc.StopResponse
-  rpc :SubscribeChannelGraph, Lnrpc.GraphTopologySubscription, stream(Lnrpc.GraphTopologyUpdate)
-  rpc :DebugLevel, Lnrpc.DebugLevelRequest, Lnrpc.DebugLevelResponse
-  rpc :FeeReport, Lnrpc.FeeReportRequest, Lnrpc.FeeReportResponse
-  rpc :UpdateChannelPolicy, Lnrpc.PolicyUpdateRequest, Lnrpc.PolicyUpdateResponse
-  rpc :ForwardingHistory, Lnrpc.ForwardingHistoryRequest, Lnrpc.ForwardingHistoryResponse
+  rpc(:WalletBalance, Lnrpc.WalletBalanceRequest, Lnrpc.WalletBalanceResponse)
+  rpc(:ChannelBalance, Lnrpc.ChannelBalanceRequest, Lnrpc.ChannelBalanceResponse)
+  rpc(:GetTransactions, Lnrpc.GetTransactionsRequest, Lnrpc.TransactionDetails)
+  rpc(:SendCoins, Lnrpc.SendCoinsRequest, Lnrpc.SendCoinsResponse)
+  rpc(:SubscribeTransactions, Lnrpc.GetTransactionsRequest, stream(Lnrpc.Transaction))
+  rpc(:SendMany, Lnrpc.SendManyRequest, Lnrpc.SendManyResponse)
+  rpc(:NewAddress, Lnrpc.NewAddressRequest, Lnrpc.NewAddressResponse)
+  rpc(:SignMessage, Lnrpc.SignMessageRequest, Lnrpc.SignMessageResponse)
+  rpc(:VerifyMessage, Lnrpc.VerifyMessageRequest, Lnrpc.VerifyMessageResponse)
+  rpc(:ConnectPeer, Lnrpc.ConnectPeerRequest, Lnrpc.ConnectPeerResponse)
+  rpc(:DisconnectPeer, Lnrpc.DisconnectPeerRequest, Lnrpc.DisconnectPeerResponse)
+  rpc(:ListPeers, Lnrpc.ListPeersRequest, Lnrpc.ListPeersResponse)
+  rpc(:GetInfo, Lnrpc.GetInfoRequest, Lnrpc.GetInfoResponse)
+  rpc(:PendingChannels, Lnrpc.PendingChannelsRequest, Lnrpc.PendingChannelsResponse)
+  rpc(:ListChannels, Lnrpc.ListChannelsRequest, Lnrpc.ListChannelsResponse)
+  rpc(:ClosedChannels, Lnrpc.ClosedChannelsRequest, Lnrpc.ClosedChannelsResponse)
+  rpc(:OpenChannelSync, Lnrpc.OpenChannelRequest, Lnrpc.ChannelPoint)
+  rpc(:OpenChannel, Lnrpc.OpenChannelRequest, stream(Lnrpc.OpenStatusUpdate))
+  rpc(:CloseChannel, Lnrpc.CloseChannelRequest, stream(Lnrpc.CloseStatusUpdate))
+  rpc(:AbandonChannel, Lnrpc.AbandonChannelRequest, Lnrpc.AbandonChannelResponse)
+  rpc(:SendPayment, stream(Lnrpc.SendRequest), stream(Lnrpc.SendResponse))
+  rpc(:SendPaymentSync, Lnrpc.SendRequest, Lnrpc.SendResponse)
+  rpc(:SendToRoute, stream(Lnrpc.SendToRouteRequest), stream(Lnrpc.SendResponse))
+  rpc(:SendToRouteSync, Lnrpc.SendToRouteRequest, Lnrpc.SendResponse)
+  rpc(:AddInvoice, Lnrpc.Invoice, Lnrpc.AddInvoiceResponse)
+  rpc(:ListInvoices, Lnrpc.ListInvoiceRequest, Lnrpc.ListInvoiceResponse)
+  rpc(:LookupInvoice, Lnrpc.PaymentHash, Lnrpc.Invoice)
+  rpc(:SubscribeInvoices, Lnrpc.InvoiceSubscription, stream(Lnrpc.Invoice))
+  rpc(:DecodePayReq, Lnrpc.PayReqString, Lnrpc.PayReq)
+  rpc(:ListPayments, Lnrpc.ListPaymentsRequest, Lnrpc.ListPaymentsResponse)
+  rpc(:DeleteAllPayments, Lnrpc.DeleteAllPaymentsRequest, Lnrpc.DeleteAllPaymentsResponse)
+  rpc(:DescribeGraph, Lnrpc.ChannelGraphRequest, Lnrpc.ChannelGraph)
+  rpc(:GetChanInfo, Lnrpc.ChanInfoRequest, Lnrpc.ChannelEdge)
+  rpc(:GetNodeInfo, Lnrpc.NodeInfoRequest, Lnrpc.NodeInfo)
+  rpc(:QueryRoutes, Lnrpc.QueryRoutesRequest, Lnrpc.QueryRoutesResponse)
+  rpc(:GetNetworkInfo, Lnrpc.NetworkInfoRequest, Lnrpc.NetworkInfo)
+  rpc(:StopDaemon, Lnrpc.StopRequest, Lnrpc.StopResponse)
+  rpc(:SubscribeChannelGraph, Lnrpc.GraphTopologySubscription, stream(Lnrpc.GraphTopologyUpdate))
+  rpc(:DebugLevel, Lnrpc.DebugLevelRequest, Lnrpc.DebugLevelResponse)
+  rpc(:FeeReport, Lnrpc.FeeReportRequest, Lnrpc.FeeReportResponse)
+  rpc(:UpdateChannelPolicy, Lnrpc.PolicyUpdateRequest, Lnrpc.PolicyUpdateResponse)
+  rpc(:ForwardingHistory, Lnrpc.ForwardingHistoryRequest, Lnrpc.ForwardingHistoryResponse)
 end
 
 defmodule Lnrpc.Lightning.Stub do

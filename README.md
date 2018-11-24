@@ -15,7 +15,7 @@ $ mix do deps.get, compile, escript.build
 2. set the macaroon.txt and tls.cert and get the hostname
 3. start the script
 ```
-$ ./ex_lndclient --macaroonpath=macaroon.txt --tlscertpath=tls.cert --rpcserver=127.0.0.1:90001
+$ ./ex_lndclient --macaroonpath=macaroon.txt --tlscertpath=tls.cert --rpcserver=127.0.0.1:10009
 ```
 
 ## Installation
