@@ -66,11 +66,15 @@ And https://github.com/lightningnetwork/lnd/tree/master/docs/grpc for lightningn
 ## Roadmap
 - [X] Connect to a lightning network server via gRPC
 - [X] Subscribe to transaction stream
-- [ ] Enhance your calm too many pings
+- [ ] Enhance your calm too many pings (old server?)
 - [ ] Command line version 
 - [ ] Elixir module for reuse
 - [ ] Add support for macaroon to the grpc library
 
+
+## More Info
+- [lightning coindesk django implementation](https://github.com/lightninglabs/lightning-coindesk/blob/d1e18c17c97e893ba342661ade59e4d26e5436e9/coindesk/models.py)
+- 
 ## License
 
 1. ex_lndclient Copyright (c) 2018 David Rasch Licensed under the MIT License
